@@ -8,7 +8,8 @@ var screen_size
 #This always activates first
 func _ready():
 	screen_size = get_viewport_rect().size
-	hide()
+	# Set the remote path to the direct child Camera2D node in the main scene
+	$RemoteTransform2D.remote_path = get_parent().get_node("Camera2D").get_path()
 
 #Constant things
 func _process(delta):
@@ -26,7 +27,7 @@ func _process(delta):
 		#plays the idle animation as default
 		$AnimatedSprite2D.play()
 	else:
-		$AnimatedSprite2D.stop()
+		$AnimatedSprite2D.play("idle")
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	#Checks if you run left or right and flips horizontally accordingly
