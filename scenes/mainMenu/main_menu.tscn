@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://r8dpfsku4loa"]
+
+[ext_resource type="Script" path="res://scenes/mainMenu/main_menu.gd" id="1_ne103"]
+[ext_resource type="Texture2D" uid="uid://oeuy8yq1vogk" path="res://assets/main menu stuff/splashscreen.png" id="2_73shf"]
+[ext_resource type="FontFile" uid="uid://3xholo3d0jjx" path="res://assets/fonts/TranscendsGames.otf" id="2_t7g23"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vyrcy"]
+font = ExtResource("2_t7g23")
+font_size = 70
+font_color = Color(0.67451, 0.729412, 0.427451, 1)
+outline_size = 7
+outline_color = Color(0.956863, 0.866667, 0.972549, 1)
+shadow_size = 15
+shadow_color = Color(0, 0.615686, 0.462745, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ne103")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_73shf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TopContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
+
+[node name="Separator" type="Control" parent="MarginContainer/TopContainer"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="MarginContainer/TopContainer"]
+layout_mode = 2
+text = "Armored Core V.1"
+label_settings = SubResource("LabelSettings_vyrcy")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Separator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayButtom" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_t7g23")
+theme_override_font_sizes/font_size = 45
+text = "Play"
+
+[node name="OptionsButtom2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_t7g23")
+theme_override_font_sizes/font_size = 45
+text = "Options"
+
+[node name="QuitButtom3" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_t7g23")
+theme_override_font_sizes/font_size = 45
+text = "Quit Game"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PlayButtom" to="." method="_on_play_buttom_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButtom2" to="." method="_on_options_buttom_2_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButtom3" to="." method="_on_quit_buttom_3_pressed"]
