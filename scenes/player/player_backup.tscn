@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1u1i28n3rhqg"]
+[gd_scene load_steps=17 format=3 uid="uid://c54qx4vcsq51p"]
 
-[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_7nbr6"]
 [ext_resource type="Texture2D" uid="uid://c3ypd2386prrc" path="res://assets/player_img/knight_idle_spritesheet.png" id="2_6f4s5"]
 [ext_resource type="Texture2D" uid="uid://dl25nknu2ltw0" path="res://assets/player_img/knight_run_anim_f0.png" id="3_uoudp"]
 [ext_resource type="Texture2D" uid="uid://s7udu05fkrm1" path="res://assets/player_img/knight_run_anim_f1.png" id="4_etgxd"]
@@ -8,6 +7,50 @@
 [ext_resource type="Texture2D" uid="uid://by8he6e6mvgov" path="res://assets/player_img/knight_run_anim_f3.png" id="6_jw5ar"]
 [ext_resource type="Texture2D" uid="uid://cv8bqn3uphs4g" path="res://assets/player_img/knight_run_anim_f4.png" id="7_kuwbw"]
 [ext_resource type="Texture2D" uid="uid://c4ohvkqbcpfw4" path="res://assets/player_img/knight_run_anim_f5.png" id="8_0sg7j"]
+
+[sub_resource type="GDScript" id="GDScript_mvfk1"]
+script/source = "extends Area2D
+
+signal hit
+
+@export var speed = 400
+var screen_size
+var velocity = Vector2()
+
+#This always activates first
+func _ready():
+	screen_size = get_viewport_rect().size
+	# Set the remote path to the direct child Camera2D node in the main scene
+	$RemoteTransform2D.remote_path = get_parent().get_node(\"Camera2D\").get_path()
+
+#Constant things
+func _process(delta):
+	handleInput()
+	move_and_slide(velocity)
+
+func handleInput():
+	playerMovement()
+	
+func playerMovement():
+	var input_direction = Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	velocity = input_direction * speed
+	if velocity.length() > 0:
+		#plays the idle animation as default
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.play(\"idle\")
+	#Checks if you run left or right and flips horizontally accordingly
+	if velocity.x != 0:
+		$AnimatedSprite2D.animation = \"run\"
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+	
+#When you touch other objects, you take damage and become invincible for 2 sec (later)
+func _on_body_entered(body):
+	hide()
+	hit.emit()
+	$CollisionShape2D.set_deferred(\"disabled\", true)
+	
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3fyw"]
 atlas = ExtResource("2_6f4s5")
@@ -33,7 +76,7 @@ region = Rect2(64, 0, 16, 16)
 atlas = ExtResource("2_6f4s5")
 region = Rect2(80, 0, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y58rw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3wed6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -82,24 +125,28 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_esx6f"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pl85"]
 size = Vector2(42, 61)
 
-[node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.8, 0.8)
-script = ExtResource("1_7nbr6")
+[node name="Player" type="Area2D"]
+position = Vector2(521, 245)
+script = SubResource("GDScript_mvfk1")
+speed = null
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_y58rw")
+sprite_frames = SubResource("SpriteFrames_3wed6")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(3, 4.5)
-shape = SubResource("RectangleShape2D_esx6f")
+shape = SubResource("RectangleShape2D_8pl85")
 
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oeuy8yq1vogk"
-path="res://.godot/imported/splashscreen.png-8db16f50f07333c6050e60bf554afadb.ctex"
+uid="uid://5qa48vq8lyhp"
+path="res://.godot/imported/slime_run_anim_f1.png-d1127962d4ac8f1f98fccd4948cb1dc7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main menu stuff/splashscreen.png"
-dest_files=["res://.godot/imported/splashscreen.png-8db16f50f07333c6050e60bf554afadb.ctex"]
+source_file="res://assets/enemies/slime/slime_run_anim_f1.png"
+dest_files=["res://.godot/imported/slime_run_anim_f1.png-d1127962d4ac8f1f98fccd4948cb1dc7.ctex"]
 
 [params]
 

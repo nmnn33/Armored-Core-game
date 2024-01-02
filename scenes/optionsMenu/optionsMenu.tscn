@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://677x8hoao7qa"]
 
 [ext_resource type="Script" path="res://scenes/optionsMenu/optionsMenu.gd" id="1_ptbwl"]
-[ext_resource type="Texture2D" uid="uid://oeuy8yq1vogk" path="res://assets/main menu stuff/splashscreen.png" id="2_0lyhn"]
+[ext_resource type="Texture2D" uid="uid://oeuy8yq1vogk" path="res://assets/main_menu/splashscreen.png" id="2_0lyhn"]
 [ext_resource type="FontFile" uid="uid://3xholo3d0jjx" path="res://assets/fonts/TranscendsGames.otf" id="3_fqhjd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vyrcy"]
