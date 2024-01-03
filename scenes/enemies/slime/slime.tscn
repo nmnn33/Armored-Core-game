@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://7s2felejks7u"]
+
+[ext_resource type="Script" path="res://scenes/enemies/slime/slime.gd" id="1_syk8j"]
+[ext_resource type="Texture2D" uid="uid://b2neh1ll1k2q3" path="res://assets/enemies/slime/slime_run_anim_f0.png" id="1_t3sf3"]
+[ext_resource type="Texture2D" uid="uid://5qa48vq8lyhp" path="res://assets/enemies/slime/slime_run_anim_f1.png" id="2_7spj8"]
+[ext_resource type="Texture2D" uid="uid://dcxamvo5g70he" path="res://assets/enemies/slime/slime_run_anim_f2.png" id="3_7u8jo"]
+[ext_resource type="Texture2D" uid="uid://bhriw70jxbvxh" path="res://assets/enemies/slime/slime_run_anim_f3.png" id="4_sxjks"]
+[ext_resource type="Texture2D" uid="uid://bpawukt4dgslm" path="res://assets/enemies/slime/slime_run_anim_f4.png" id="5_dw8gv"]
+[ext_resource type="Texture2D" uid="uid://cv600umr2kkkv" path="res://assets/enemies/slime/slime_run_anim_f5.png" id="6_gegox"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5nko"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_t3sf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7spj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7u8jo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sxjks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw8gv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gegox")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1s74"]
+size = Vector2(50, 33)
+
+[node name="Slime" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_syk8j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l5nko")
+animation = &"run"
+frame_progress = 0.633307
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3.1)
+scale = Vector2(0.6, 0.6)
+shape = SubResource("RectangleShape2D_a1s74")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="HurtBox" type="Area2D" parent="."]
