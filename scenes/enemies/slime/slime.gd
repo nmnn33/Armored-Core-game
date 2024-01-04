@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var movement_speed = 50
+@export var hp = 40
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -21,3 +22,9 @@ func _physics_process(_delta):
 		$AnimatedSprite2D.flip_h = false
 	elif direction.x < -0.1:
 		$AnimatedSprite2D.flip_h = true
+
+
+func _on_hurt_box_hurt(damage):
+	hp -= damage
+	if hp <= 0:
+		queue_free()

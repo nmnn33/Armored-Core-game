@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var movement_speed = 400
+var hp = 100
 var screen_size
 
 #This always activates first
@@ -27,3 +28,8 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	move_and_collide(velocity * delta)
+
+#When player's hurtbox is collided with hitbox
+func _on_hurt_box_hurt(damage):
+	hp -= damage
+	print(hp)
