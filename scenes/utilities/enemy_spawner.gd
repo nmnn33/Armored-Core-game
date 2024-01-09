@@ -52,6 +52,4 @@ func get_random_position():
 	
 	var x_spawn = randf_range(spawn_pos1.x, spawn_pos2.x)
 	var y_spawn = randf_range(spawn_pos1.y,spawn_pos2.y)
-	print(vpr)
-	print(get_viewport_rect().size)
 	return Vector2(x_spawn,y_spawn) #The vector coordinate where enemy will spawn

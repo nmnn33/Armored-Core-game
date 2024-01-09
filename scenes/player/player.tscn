@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1u1i28n3rhqg"]
+[gd_scene load_steps=20 format=3 uid="uid://c1u1i28n3rhqg"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_7nbr6"]
 [ext_resource type="Texture2D" uid="uid://c3ypd2386prrc" path="res://assets/player_img/knight_idle_spritesheet.png" id="2_6f4s5"]
@@ -89,6 +89,9 @@ size = Vector2(25, 36.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_boosl"]
 size = Vector2(38.75, 57.5)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yg58a"]
+radius = 485.401
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.8, 0.8)
 motion_mode = 1
@@ -109,7 +112,6 @@ shape = SubResource("RectangleShape2D_esx6f")
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
 [node name="HurtBox" parent="." instance=ExtResource("10_sg1a3")]
-scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 2
 
@@ -117,6 +119,26 @@ collision_mask = 2
 position = Vector2(3.125, 5)
 shape = SubResource("RectangleShape2D_boosl")
 
+[node name="Attack" type="Node2D" parent="."]
+
+[node name="RocketTimer" type="Timer" parent="Attack"]
+wait_time = 1.5
+
+[node name="RocketAttackTimer" type="Timer" parent="Attack/RocketTimer"]
+wait_time = 0.075
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+shape = SubResource("CircleShape2D_yg58a")
+
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
+[connection signal="timeout" from="Attack/RocketTimer" to="." method="_on_rocket_timer_timeout"]
+[connection signal="timeout" from="Attack/RocketTimer/RocketAttackTimer" to="." method="_on_rocket_attack_timer_timeout"]
+[connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
+[connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 
 [editable path="HurtBox"]

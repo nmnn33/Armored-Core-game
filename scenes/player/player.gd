@@ -2,13 +2,29 @@ extends CharacterBody2D
 
 var movement_speed = 400
 var hp = 100
-var screen_size
+
+
+#Attacks
+var rocket = preload("res://scenes/attack/rocket.tscn")
+
+#AttackNodes
+@onready var rocketTimer = get_node("Attack/RocketTimer")
+@onready var rocketAttackTimer = get_node("Attack/RocketTimer/RocketAttackTimer")
+
+#Rocket
+var rocket_ammo = 0
+var rocket_baseammo = 1
+var rocket_attackspeed = 1.5
+var rocket_level = 1
+
+#Enemy Related
+var enemy_close = []
 
 #This always activates first
 func _ready():
-	screen_size = get_viewport_rect().size
 	# Set the remote path to the direct child Camera2D node in the main scene
 	$RemoteTransform2D.remote_path = get_parent().get_node("Camera2D").get_path()
+	attack()
 
 func get_input():
 	#Movement keys for movement
@@ -30,6 +46,48 @@ func _physics_process(delta):
 	move_and_collide(velocity * delta)
 
 #When player's hurtbox is collided with hitbox
-func _on_hurt_box_hurt(damage):
+func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= damage
 	print(hp)
+
+func attack():
+	if rocket_level > 0:
+		rocketTimer.wait_time = rocket_attackspeed
+		if rocketTimer.is_stopped():
+			rocketTimer.start()
+
+#Reload kind of function.
+func _on_rocket_timer_timeout():
+	rocket_ammo += rocket_baseammo
+	rocketAttackTimer.start()
+
+#Rockets get spawned and go towards enemies
+func _on_rocket_attack_timer_timeout():
+	if rocket_ammo > 0:
+		var rocket_attack = rocket.instantiate()
+		rocket_attack.position = position
+		rocket_attack.target = get_random_target()
+		rocket_attack.level = rocket_level
+		add_child(rocket_attack)
+		rocket_ammo -= 1
+		if rocket_ammo > 0:			#Restocks ammo
+			rocketAttackTimer.start()
+		else:
+			rocketAttackTimer.stop()
+
+#function where if there is enemy in the range, it will return it's global position, otherwise it returns an "up" so the attacks attack by default up
+func get_random_target():
+	if enemy_close.size() > 0:
+		return enemy_close.pick_random().global_position
+	else:
+		return Vector2.UP
+
+#When enemy enters detection area
+func _on_enemy_detection_area_body_entered(body):
+	if not enemy_close.has(body):
+		enemy_close.append(body)
+
+#When enemy leaves detection area
+func _on_enemy_detection_area_body_exited(body):
+	if enemy_close.has(body):
+		enemy_close.erase(body)

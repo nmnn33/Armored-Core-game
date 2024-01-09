@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbx3m7vhuxplj"]
+
+[ext_resource type="Script" path="res://scenes/attack/rocket.gd" id="1_dm6ag"]
+[ext_resource type="Texture2D" uid="uid://cxbrl7ufm3w8o" path="res://assets/Robot Warfare Asset Pack 22-11-24/Projectiles/RPG-round.png" id="2_q7hmg"]
+[ext_resource type="AudioStream" uid="uid://b67sjx6hul2mc" path="res://assets/sounds/boom1.wav" id="3_bu68n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1p48i"]
+size = Vector2(9, 7)
+
+[node name="Rocket" type="Area2D" groups=["attack"]]
+top_level = true
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_dm6ag")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_q7hmg")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, -0.5)
+shape = SubResource("RectangleShape2D_1p48i")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bu68n")
+volume_db = -20.0
+pitch_scale = 0.6
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

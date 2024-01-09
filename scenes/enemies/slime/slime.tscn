@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7s2felejks7u"]
+[gd_scene load_steps=15 format=3 uid="uid://7s2felejks7u"]
 
 [ext_resource type="Script" path="res://scenes/enemies/slime/slime.gd" id="1_syk8j"]
 [ext_resource type="Texture2D" uid="uid://b2neh1ll1k2q3" path="res://assets/enemies/slime/slime_run_anim_f0.png" id="1_t3sf3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cv600umr2kkkv" path="res://assets/enemies/slime/slime_run_anim_f5.png" id="6_gegox"]
 [ext_resource type="PackedScene" uid="uid://bwpq8ff3qjwt2" path="res://scenes/utilities/hit_box.tscn" id="8_hxcxh"]
 [ext_resource type="PackedScene" uid="uid://33tvntv11an6" path="res://scenes/utilities/hurt_box.tscn" id="9_vs22r"]
+[ext_resource type="AudioStream" uid="uid://dodxv4g2wjk1o" path="res://assets/sounds/enemy_hit.ogg" id="10_qtbe1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l5nko"]
 animations = [{
@@ -46,6 +47,8 @@ size = Vector2(30, 24)
 size = Vector2(25, 14)
 
 [node name="Slime" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_syk8j")
 
@@ -63,6 +66,7 @@ shape = SubResource("RectangleShape2D_a1s74")
 [node name="HurtBox" parent="." instance=ExtResource("9_vs22r")]
 collision_layer = 0
 collision_mask = 4
+HurtBoxType = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, 2)
@@ -75,6 +79,11 @@ collision_mask = 0
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(0.5, 3)
 shape = SubResource("RectangleShape2D_d63bu")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_qtbe1")
+volume_db = -10.0
+pitch_scale = 0.8
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
