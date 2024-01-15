@@ -2,20 +2,29 @@ extends CharacterBody2D
 
 var movement_speed = 400
 var hp = 100
-
+var last_movement = Vector2.UP
 
 #Attacks
 var rocket = preload("res://scenes/attack/rocket.tscn")
+var plasma = preload("res://scenes/attack/plasma.tscn")
 
 #AttackNodes
 @onready var rocketTimer = get_node("Attack/RocketTimer")
 @onready var rocketAttackTimer = get_node("Attack/RocketTimer/RocketAttackTimer")
+@onready var plasmaTimer = get_node("Attack/PlasmaTimer")
+@onready var plasmaAttackTimer = get_node("Attack/PlasmaTimer/PlasmaAttackTimer")
 
 #Rocket
 var rocket_ammo = 0
 var rocket_baseammo = 1
 var rocket_attackspeed = 1.5
 var rocket_level = 1
+
+#Plasma
+var plasma_ammo = 0
+var plasma_baseammo = 1
+var plasma_attackspeed = 1.5
+var plasma_level = 1
 
 #Enemy Related
 var enemy_close = []
@@ -33,6 +42,7 @@ func get_input():
 	if velocity.length() > 0:
 		#plays the idle animation as default, otherwise run if "if" condition satisfied
 		$AnimatedSprite2D.play()
+		last_movement = input_dir		#For Plasma attack
 	else:
 		$AnimatedSprite2D.play("idle")
 	#Checks if you run left or right and flips horizontally accordingly
@@ -55,6 +65,10 @@ func attack():
 		rocketTimer.wait_time = rocket_attackspeed
 		if rocketTimer.is_stopped():
 			rocketTimer.start()
+	if plasma_level > 0:
+		plasmaTimer.wait_time = plasma_attackspeed
+		if plasmaTimer.is_stopped():
+			plasmaTimer.start()
 
 #Reload kind of function.
 func _on_rocket_timer_timeout():
@@ -75,6 +89,25 @@ func _on_rocket_attack_timer_timeout():
 		else:
 			rocketAttackTimer.stop()
 
+#Reload kind of function.
+func _on_plasma_timer_timeout():
+	plasma_ammo += plasma_baseammo
+	plasmaAttackTimer.start()
+
+#Plasma get spawned and they move towards last_movement; left, right, up, down
+func _on_plasma_attack_timer_timeout():
+	if plasma_ammo > 0:
+		var plasma_attack = plasma.instantiate()
+		plasma_attack.position = position
+		plasma_attack.last_movement = last_movement
+		plasma_attack.level = plasma_level
+		add_child(plasma_attack)
+		plasma_ammo -= 1
+		if plasma_ammo > 0:			#Restocks ammo
+			plasmaAttackTimer.start()
+		else:
+			plasmaAttackTimer.stop()
+
 #function where if there is enemy in the range, it will return it's global position, otherwise it returns an "up" so the attacks attack by default up
 func get_random_target():
 	if enemy_close.size() > 0:
@@ -91,3 +124,5 @@ func _on_enemy_detection_area_body_entered(body):
 func _on_enemy_detection_area_body_exited(body):
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+

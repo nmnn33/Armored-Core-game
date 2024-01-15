@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://vl44riyh1ng"]
+
+[ext_resource type="Script" path="res://scenes/attack/plasma.gd" id="1_k0lr1"]
+[ext_resource type="Texture2D" uid="uid://ks5gxw4sqipd" path="res://assets/Robot Warfare Asset Pack 22-11-24/Projectiles/bullets+plasma.png" id="2_ov8x5"]
+[ext_resource type="AudioStream" uid="uid://bjbqycg0hexx3" path="res://assets/sounds/boom2.wav" id="3_3sbay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmo48"]
+size = Vector2(8, 6)
+
+[node name="Plasma" type="Area2D" groups=["attack"]]
+top_level = true
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_k0lr1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ov8x5")
+hframes = 3
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dmo48")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3sbay")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

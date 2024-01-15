@@ -127,6 +127,12 @@ wait_time = 1.5
 [node name="RocketAttackTimer" type="Timer" parent="Attack/RocketTimer"]
 wait_time = 0.075
 
+[node name="PlasmaTimer" type="Timer" parent="Attack"]
+wait_time = 4.0
+
+[node name="PlasmaAttackTimer" type="Timer" parent="Attack/PlasmaTimer"]
+wait_time = 0.2
+
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 4
@@ -138,6 +144,8 @@ shape = SubResource("CircleShape2D_yg58a")
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/RocketTimer" to="." method="_on_rocket_timer_timeout"]
 [connection signal="timeout" from="Attack/RocketTimer/RocketAttackTimer" to="." method="_on_rocket_attack_timer_timeout"]
+[connection signal="timeout" from="Attack/PlasmaTimer" to="." method="_on_plasma_timer_timeout"]
+[connection signal="timeout" from="Attack/PlasmaTimer/PlasmaAttackTimer" to="." method="_on_plasma_attack_timer_timeout"]
 [connection signal="body_entered" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_entered"]
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 
