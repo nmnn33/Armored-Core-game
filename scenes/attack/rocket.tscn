@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbx3m7vhuxplj"]
 
 [ext_resource type="Script" path="res://scenes/attack/rocket.gd" id="1_dm6ag"]
-[ext_resource type="Texture2D" uid="uid://cxbrl7ufm3w8o" path="res://assets/Robot Warfare Asset Pack 22-11-24/Projectiles/RPG-round.png" id="2_q7hmg"]
+[ext_resource type="Texture2D" uid="uid://cxbrl7ufm3w8o" path="res://assets/attacks/projectiles/RPG-round.png" id="2_pfqmt"]
 [ext_resource type="AudioStream" uid="uid://b67sjx6hul2mc" path="res://assets/sounds/boom1.wav" id="3_bu68n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1p48i"]
@@ -14,7 +14,7 @@ collision_mask = 0
 script = ExtResource("1_dm6ag")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_q7hmg")
+texture = ExtResource("2_pfqmt")
 hframes = 3
 frame = 1
 

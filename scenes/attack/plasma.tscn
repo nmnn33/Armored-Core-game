@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vl44riyh1ng"]
 
 [ext_resource type="Script" path="res://scenes/attack/plasma.gd" id="1_k0lr1"]
-[ext_resource type="Texture2D" uid="uid://ks5gxw4sqipd" path="res://assets/Robot Warfare Asset Pack 22-11-24/Projectiles/bullets+plasma.png" id="2_ov8x5"]
+[ext_resource type="Texture2D" uid="uid://ks5gxw4sqipd" path="res://assets/attacks/projectiles/bullets+plasma.png" id="2_ybijn"]
 [ext_resource type="AudioStream" uid="uid://bjbqycg0hexx3" path="res://assets/sounds/boom2.wav" id="3_3sbay"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmo48"]
@@ -15,7 +15,7 @@ collision_mask = 0
 script = ExtResource("1_k0lr1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ov8x5")
+texture = ExtResource("2_ybijn")
 hframes = 3
 frame = 2
 

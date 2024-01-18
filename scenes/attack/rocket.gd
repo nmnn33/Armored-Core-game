@@ -30,16 +30,16 @@ func _ready():
 			knockback_amount = 100
 			attack_size = 1.0
 		3:
-			hp = 2
+			hp = 1
 			speed = 100
 			damage = 8
-			knockback_amount = 100
+			knockback_amount = 130
 			attack_size = 1.0
 		4:
-			hp = 2
+			hp = 1
 			speed = 100
 			damage = 8
-			knockback_amount = 100
+			knockback_amount = 130
 			attack_size = 1.0
 
 	

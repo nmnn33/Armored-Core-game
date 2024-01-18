@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://q7jv2rhef6vx"]
+
+[ext_resource type="Script" path="res://scenes/objects/exp_collectable.gd" id="1_v1sfn"]
+[ext_resource type="Texture2D" uid="uid://bfc2c4snvkxr8" path="res://assets/objects/bag_coins.png" id="2_a25nx"]
+[ext_resource type="AudioStream" uid="uid://o7xd4v2hexii" path="res://assets/sounds/collectcoin.mp3" id="3_inbrf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cpfb"]
+radius = 6.0
+
+[node name="ExpCollectable" type="Area2D" groups=["loot"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_v1sfn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_a25nx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("CircleShape2D_1cpfb")
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_inbrf")
+volume_db = -10.0
+
+[connection signal="finished" from="CollectSound" to="." method="_on_collect_sound_finished"]

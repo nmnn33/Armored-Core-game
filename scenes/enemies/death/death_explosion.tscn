@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6tdx6gg2qruy"]
 
-[ext_resource type="Texture2D" uid="uid://6u0ghfcdph7r" path="res://assets/Robot Warfare Asset Pack 22-11-24/Effects/big-explosion.png" id="1_sl3uh"]
+[ext_resource type="Texture2D" uid="uid://dngjfmf2trqcp" path="res://assets/effects/big-explosion.png" id="1_b2p5i"]
 [ext_resource type="Script" path="res://scenes/enemies/death/death_explosion.gd" id="2_nhg6k"]
 [ext_resource type="AudioStream" uid="uid://b1vtmv7yl160t" path="res://assets/sounds/boom6.wav" id="3_drqf2"]
 
@@ -41,7 +41,7 @@ _data = {
 }
 
 [node name="DeathExplosion" type="Sprite2D"]
-texture = ExtResource("1_sl3uh")
+texture = ExtResource("1_b2p5i")
 hframes = 11
 script = ExtResource("2_nhg6k")
 

@@ -3,7 +3,7 @@ extends Area2D
 var level = 1
 var hp = 9999
 var speed = 100.0
-var damage = 5
+var damage = 10
 var attack_size = 1.0
 var knockback_amount = 100
 
@@ -20,26 +20,26 @@ func _ready():
 		1:
 			hp = 9999
 			speed = 250.0
-			damage = 5
+			damage = 10
 			knockback_amount = 100
 			attack_size = 3.0
 		2:
 			hp = 9999
 			speed = 250.0
-			damage = 5
+			damage = 10
 			knockback_amount = 100
 			attack_size = 3.0
 		3:
 			hp = 9999
 			speed = 250.0
-			damage = 5
-			knockback_amount = 100
+			damage = 15
+			knockback_amount = 120
 			attack_size = 3.0
 		4:
 			hp = 9999
 			speed = 250.0
-			damage = 5
-			knockback_amount = 125
+			damage = 20
+			knockback_amount = 150
 			attack_size = 3.0
 			
 	var move_to_less = Vector2.ZERO			#move_to_less and move_to_more are for determining the position where the plasma spawns

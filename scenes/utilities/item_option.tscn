@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf71p3ep7oaa"]
+
+[ext_resource type="Script" path="res://scenes/utilities/item_option.gd" id="1_743u3"]
+[ext_resource type="Texture2D" uid="uid://dn6ir552ku5jd" path="res://assets/player_img/weapon_sword_1.png" id="2_hettf"]
+[ext_resource type="FontFile" uid="uid://3xholo3d0jjx" path="res://assets/fonts/TranscendsGames.otf" id="3_codu0"]
+
+[node name="ItemOption" type="ColorRect"]
+custom_minimum_size = Vector2(400, 100)
+anchors_preset = -1
+anchor_right = 0.333
+anchor_bottom = 0.125
+offset_right = -219.6
+offset_bottom = -50.0
+color = Color(0.54902, 0.54902, 0.54902, 1)
+script = ExtResource("1_743u3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 64.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 1)
+
+[node name="ItemIcon" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_right = 103.0
+offset_bottom = 77.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_hettf")
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 7.0
+offset_right = 168.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("3_codu0")
+theme_override_font_sizes/font_size = 30
+text = "Name"
+
+[node name="ItemDescription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 52.0
+offset_right = 394.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_codu0")
+theme_override_font_sizes/font_size = 18
+text = "Descrioption for item hrear3guy5rg23457862 fd8dfguysdfuysd fd87783grj sy7u8 fgw7y6rf w jhwuy7r fusebduiyfersf hjsf 7ef iuguy  t8y7iu rg76yrfuyf yu7fyu"
+autowrap_mode = 3
+
+[node name="ItemLevel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 7.0
+offset_right = 382.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("3_codu0")
+theme_override_font_sizes/font_size = 28
+text = "Level: 1"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
