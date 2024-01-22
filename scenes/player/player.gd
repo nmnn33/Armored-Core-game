@@ -47,6 +47,10 @@ var plasma_level = 0
 @onready var upgradeOptions = get_node("GUILayer/GUI/LevelUpPanel/UpgradeOptions")
 @onready var itemOptions = preload("res://scenes/utilities/item_option.tscn")
 @onready var LevelUpSound = get_node("GUILayer/GUI/LevelUpPanel/LevelUpSound")
+@onready var healthBar = get_node("GUILayer/GUI/HealthBar")
+@onready var collectedWeapons = get_node("GUILayer/GUI/CollectedWeapons")
+@onready var collectedUpgrades = get_node("GUILayer/GUI/CollectedUpgrades")
+@onready var itemContainer = preload("res://scenes/player/gui/item_container.tscn")
 
 #Enemy Related
 var enemy_close = []
@@ -58,6 +62,7 @@ func _ready():
 	upgrade_character("rocket1")
 	attack()
 	set_expbar(experience, calculate_experiencecap())
+	_on_hurt_box_hurt(0,0,0)
 
 func get_input():
 	#Movement keys for movement
@@ -82,7 +87,8 @@ func _physics_process(delta):
 #When player's hurtbox is collided with hitbox
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0, 999.0)	#min dmg is 1, max 999.
-	print(hp)
+	healthBar.max_value = maxhp
+	healthBar.value = hp
 
 #Attacks start here
 func attack():
@@ -251,6 +257,7 @@ func upgrade_character(upgrade):
 		"repair":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
+	adjust_gui_collection(upgrade)
 	attack()	#refresh attack() so attacks will have correct stats
 	var option_children = upgradeOptions.get_children()	#childrens were added in levelup func
 	for i in option_children:	#Frees the options
@@ -287,3 +294,20 @@ func get_random_item():
 		return randomitem	
 	else:
 		return null
+
+#Updates the GUI CollectedWeapons and ColledtedUpgrades
+func adjust_gui_collection(upgrade):
+	var get_upgraded_displayname = UpgradeDb.UPGRADES[upgrade]["displayname"]	#Displayname is to identify the upgrade/weapon, so you don't get duplicates (example: rocket1 and rocket2)
+	var get_type = UpgradeDb.UPGRADES[upgrade]["type"]
+	if get_type != "item":	#Don't want repair to be added into GUI
+		var get_collected_displaynames = []
+		for i in collected_upgrades:	#Adds upgrades found in this only
+			get_collected_displaynames.append(UpgradeDb.UPGRADES[i]["displayname"])
+		if not get_upgraded_displayname in get_collected_displaynames:	#Here the upgrades get added if not had before
+			var new_item = itemContainer.instantiate()
+			new_item.upgrade = upgrade
+			match get_type:	#either on ColledtedWeapons or CollectedUpgrades depending on type
+				"weapon":
+					collectedWeapons.add_child(new_item)
+				"upgrade":
+					collectedUpgrades.add_child(new_item)

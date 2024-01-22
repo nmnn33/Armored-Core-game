@@ -5,7 +5,7 @@ const ICON_PATH = "res://assets/upgrades/"
 const WEAPON_PATH = "res://assets/attacks/projectiles/"
 const UPGRADES = {
 	"rocket1": {
-		"icon": WEAPON_PATH + "RPG-round.png",
+		"icon": WEAPON_PATH + "RPG-round-icon.png",
 		"displayname": "Rocket",
 		"details": "Sends an rocket towards random nearby enemy",
 		"level": "Level: 1",
@@ -13,7 +13,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"rocket2": {
-		"icon": WEAPON_PATH + "RPG-round.png",
+		"icon": WEAPON_PATH + "RPG-round-icon.png",
 		"displayname": "Rocket",
 		"details": "An addition rocket is sent",
 		"level": "Level: 2",
@@ -21,7 +21,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"rocket3": {
-		"icon": WEAPON_PATH + "RPG-round.png",
+		"icon": WEAPON_PATH + "RPG-round-icon.png",
 		"displayname": "Rocket",
 		"details": "Rockets knockback is increased by 30% and do + 3 damage",
 		"level": "Level: 3",
@@ -29,7 +29,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"rocket4": {
-		"icon": WEAPON_PATH + "RPG-round.png",
+		"icon": WEAPON_PATH + "RPG-round-icon.png",
 		"displayname": "Rocket",
 		"details": "2 more additional rockets are sent",
 		"level": "Level: 4",
@@ -37,7 +37,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"plasma1": {
-		"icon": WEAPON_PATH + "bullets+plasma.png",
+		"icon": WEAPON_PATH + "bullets+plasma-icon.png",
 		"displayname": "Plasma",
 		"details": "A plasma comes spawns from player and goes towards last moved postion on zig-zag pattern",
 		"level": "Level: 1",
@@ -45,7 +45,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"plasma2": {
-		"icon": WEAPON_PATH + "bullets+plasma.png",
+		"icon": WEAPON_PATH + "bullets+plasma-icon.png",
 		"displayname": "Plasma",
 		"details": "An additional plasma is created",
 		"level": "Level: 2",
@@ -53,7 +53,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"plasma3": {
-		"icon": WEAPON_PATH + "bullets+plasma.png",
+		"icon": WEAPON_PATH + "bullets+plasma-icon.png",
 		"displayname": "Plasma",
 		"details": "The plasma cooldown is reduced by 0.5 seconds, knockback is increased by 20% and damage by 5",
 		"level": "Level: 3",
@@ -61,7 +61,7 @@ const UPGRADES = {
 		"type": "weapon"
 	},
 	"plasma4": {
-		"icon": WEAPON_PATH + "bullets+plasma.png",
+		"icon": WEAPON_PATH + "bullets+plasma-icon.png",
 		"displayname": "Plasma",
 		"details": "An additional plasma is created, the knockback is increased by 30% and damage by 5",
 		"level": "Level: 4",
