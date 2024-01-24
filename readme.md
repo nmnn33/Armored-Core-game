@@ -16,6 +16,6 @@ It can be easily expanded by any user. Instructions are in below.
 ### Installing
 
 * Download this repository as a zip-file.
-* Open the zip file on any empty folder on your PC.
+* Open the zip-file on any empty folder on your PC.
 * On Godot, in local projects, import the folder.
 * You are ready to play or to edit this game project!

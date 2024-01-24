@@ -173,7 +173,7 @@ const UPGRADES = {
 		"type": "upgrade"
 	},
 	"optimize2": {
-		"icon": ICON_PATH + "optimize_old.png",
+		"icon": ICON_PATH + "Skillicon10_17.png",
 		"displayname": "Optimize",
 		"details": "Decreases of the cooldown of attacks by an additional 5% of their base time",
 		"level": "Level: 2",
@@ -181,7 +181,7 @@ const UPGRADES = {
 		"type": "upgrade"
 	},
 	"optimize3": {
-		"icon": ICON_PATH + "optimize_old.png",
+		"icon": ICON_PATH + "Skillicon10_17.png",
 		"displayname": "Optimize",
 		"details": "Decreases of the cooldown of attacks by an additional 5% of their base time",
 		"level": "Level: 3",
@@ -189,7 +189,7 @@ const UPGRADES = {
 		"type": "upgrade"
 	},
 	"optimize4": {
-		"icon": ICON_PATH + "optimize_old.png",
+		"icon": ICON_PATH + "Skillicon10_17.png",
 		"displayname": "Optimize",
 		"details": "Decreases of the cooldown of attacks by an additional 5% of their base time",
 		"level": "Level: 4",

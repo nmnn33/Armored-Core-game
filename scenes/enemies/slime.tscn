@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://7s2felejks7u"]
 
-[ext_resource type="Script" path="res://scenes/enemies/slime/slime.gd" id="1_syk8j"]
+[ext_resource type="Script" path="res://scenes/enemies/enemy_animsprite.gd" id="1_0r37s"]
 [ext_resource type="Texture2D" uid="uid://b2neh1ll1k2q3" path="res://assets/enemies/slime/slime_run_anim_f0.png" id="1_t3sf3"]
 [ext_resource type="Texture2D" uid="uid://5qa48vq8lyhp" path="res://assets/enemies/slime/slime_run_anim_f1.png" id="2_7spj8"]
 [ext_resource type="Texture2D" uid="uid://dcxamvo5g70he" path="res://assets/enemies/slime/slime_run_anim_f2.png" id="3_7u8jo"]
@@ -50,8 +50,8 @@ size = Vector2(25, 14)
 collision_layer = 5
 collision_mask = 5
 motion_mode = 1
-script = ExtResource("1_syk8j")
-experience = 5
+script = ExtResource("1_0r37s")
+enemy_damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)

@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://duhrx2f8n6hr"]
+[gd_scene load_steps=17 format=3 uid="uid://duhrx2f8n6hr"]
 
 [ext_resource type="Script" path="res://scenes/stages/stage.gd" id="1_88heb"]
 [ext_resource type="PackedScene" uid="uid://c1u1i28n3rhqg" path="res://scenes/player/player.tscn" id="1_317p6"]
 [ext_resource type="Texture2D" uid="uid://lf0ra5i64axf" path="res://assets/tileset/tileset_arranged.png" id="2_du3e2"]
 [ext_resource type="PackedScene" uid="uid://bhid5kgpuf88c" path="res://scenes/utilities/enemy_spawner.tscn" id="4_bt75w"]
-[ext_resource type="PackedScene" uid="uid://7s2felejks7u" path="res://scenes/enemies/slime/slime.tscn" id="5_e1iey"]
+[ext_resource type="PackedScene" uid="uid://7s2felejks7u" path="res://scenes/enemies/slime.tscn" id="5_e1iey"]
 [ext_resource type="Script" path="res://scenes/utilities/spawn_info.gd" id="6_0svek"]
+[ext_resource type="PackedScene" uid="uid://mrqy6podjfqm" path="res://scenes/enemies/wasp.tscn" id="7_pa8ls"]
+[ext_resource type="PackedScene" uid="uid://b2s753bbxnfu" path="res://scenes/enemies/spider.tscn" id="8_nps1k"]
+[ext_resource type="PackedScene" uid="uid://dd5q0bva85ptb" path="res://scenes/enemies/scarab.tscn" id="9_5oqax"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m7voe"]
 texture = ExtResource("2_du3e2")
@@ -700,9 +703,41 @@ sources/1 = SubResource("TileSetAtlasSource_m7voe")
 [sub_resource type="Resource" id="Resource_fpa6h"]
 script = ExtResource("6_0svek")
 time_start = 0
-time_end = 40
+time_end = 180
 enemy = ExtResource("5_e1iey")
+enemy_num = 2
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_mcwua"]
+script = ExtResource("6_0svek")
+time_start = 0
+time_end = 240
+enemy = ExtResource("7_pa8ls")
 enemy_num = 1
+enemy_spawn_delay = 2
+
+[sub_resource type="Resource" id="Resource_vkwv1"]
+script = ExtResource("6_0svek")
+time_start = 80
+time_end = 240
+enemy = ExtResource("8_nps1k")
+enemy_num = 2
+enemy_spawn_delay = 5
+
+[sub_resource type="Resource" id="Resource_i7btn"]
+script = ExtResource("6_0svek")
+time_start = 120
+time_end = 125
+enemy = ExtResource("9_5oqax")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_0qn0x"]
+script = ExtResource("6_0svek")
+time_start = 240
+time_end = 240
+enemy = ExtResource("9_5oqax")
+enemy_num = 5
 enemy_spawn_delay = 0
 
 [node name="Stage" type="Node"]
@@ -726,6 +761,6 @@ zoom = Vector2(1.5, 1.5)
 limit_smoothed = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("4_bt75w")]
-spawns = Array[ExtResource("6_0svek")]([SubResource("Resource_fpa6h")])
+spawns = Array[ExtResource("6_0svek")]([SubResource("Resource_fpa6h"), SubResource("Resource_mcwua"), SubResource("Resource_vkwv1"), SubResource("Resource_i7btn"), SubResource("Resource_0qn0x")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
