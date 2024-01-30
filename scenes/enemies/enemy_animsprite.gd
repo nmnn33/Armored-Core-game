@@ -11,6 +11,7 @@ var knockback = Vector2.ZERO
 @onready var loot_base = get_tree().get_first_node_in_group("loot")
 @onready var sprite = $AnimatedSprite2D
 @onready var hit_sound = $HitSound
+@onready var hitBox = $HitBox
 
 var death_anim = preload("res://scenes/enemies/death/death_explosion.tscn")
 var exp_coin = preload("res://scenes/objects/exp_collectable.tscn")
@@ -19,7 +20,7 @@ signal remove_from_array(object)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	hitBox.damage = enemy_damage
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):

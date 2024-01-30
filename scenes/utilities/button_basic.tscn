@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg6dumk7f81ot"]
+
+[ext_resource type="FontFile" uid="uid://3xholo3d0jjx" path="res://assets/fonts/TranscendsGames.otf" id="1_7pb8e"]
+[ext_resource type="AudioStream" uid="uid://cpc4hpcsjcotk" path="res://assets/sounds/hover.wav" id="2_b7aug"]
+[ext_resource type="Script" path="res://scenes/utilities/button_basic.gd" id="2_pgl0y"]
+[ext_resource type="AudioStream" uid="uid://csrf6i236y74q" path="res://assets/sounds/click.wav" id="3_6u0fh"]
+
+[node name="BasicButton" type="Button"]
+custom_minimum_size = Vector2(170, 38)
+offset_right = 170.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("1_7pb8e")
+theme_override_font_sizes/font_size = 40
+script = ExtResource("2_pgl0y")
+
+[node name="SoundHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_b7aug")
+
+[node name="SoundClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6u0fh")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="finished" from="SoundClick" to="." method="_on_sound_click_finished"]

@@ -52,8 +52,15 @@ var plasma_level = 0
 @onready var collectedUpgrades = get_node("GUILayer/GUI/CollectedUpgrades")
 @onready var itemContainer = preload("res://scenes/player/gui/item_container.tscn")
 
+@onready var deathPanel = get_node("GUILayer/GUI/DeathPanel")
+@onready var labelDeath = get_node("GUILayer/GUI/DeathPanel/LabelDeath")
+@onready var gameOverSound = get_node("GUILayer/GUI/DeathPanel/GameOverSound")
+
 #Enemy Related
 var enemy_close = []
+
+#Signal
+signal playerdeath
 
 #This always activates first
 func _ready():
@@ -89,6 +96,25 @@ func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0, 999.0)	#min dmg is 1, max 999.
 	healthBar.max_value = maxhp
 	healthBar.value = hp
+	if hp <= 0:
+		death()
+	else:
+		pass
+
+#When hp is under or same as 0 the deathPanel popsup and you can click on button to get back to main menu from the func _on_btn_menu_click_end()
+func death():
+	deathPanel.visible = true
+	emit_signal("playerdeath") #SoundStage stops playing
+	get_tree().paused = true
+	var tween = deathPanel.create_tween()
+	tween.tween_property(deathPanel,"position",Vector2(-100,100),3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	gameOverSound.play()
+
+#unpauses the game and change scene to main menu
+func _on_button_lose_menu_click_end():
+	get_tree().paused = false
+	var _level = get_tree().change_scene_to_file("res://scenes/mainMenu/main_menu.tscn")
 
 #Attacks start here
 func attack():

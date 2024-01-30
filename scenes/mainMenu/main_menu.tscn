@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://r8dpfsku4loa"]
+[gd_scene load_steps=6 format=3 uid="uid://r8dpfsku4loa"]
 
 [ext_resource type="Script" path="res://scenes/mainMenu/main_menu.gd" id="1_ne103"]
 [ext_resource type="Texture2D" uid="uid://oeuy8yq1vogk" path="res://assets/main_menu/splashscreen.png" id="2_73shf"]
 [ext_resource type="FontFile" uid="uid://3xholo3d0jjx" path="res://assets/fonts/TranscendsGames.otf" id="2_t7g23"]
+[ext_resource type="PackedScene" uid="uid://bg6dumk7f81ot" path="res://scenes/utilities/button_basic.tscn" id="4_ndh77"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vyrcy"]
 font = ExtResource("2_t7g23")
@@ -68,33 +69,21 @@ alignment = 1
 [node name="Separator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PlayButtom" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(170, 38)
+[node name="PlayButton" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ndh77")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_t7g23")
 theme_override_font_sizes/font_size = 45
 text = "Play"
 
-[node name="OptionsButtom2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(170, 38)
+[node name="OptionsButton" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ndh77")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_t7g23")
 theme_override_font_sizes/font_size = 45
 text = "Options"
 
-[node name="QuitButtom3" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(170, 38)
+[node name="QuitButton" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ndh77")]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_t7g23")
 theme_override_font_sizes/font_size = 45
-text = "Quit Game"
+text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PlayButtom" to="." method="_on_play_buttom_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButtom2" to="." method="_on_options_buttom_2_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButtom3" to="." method="_on_quit_buttom_3_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

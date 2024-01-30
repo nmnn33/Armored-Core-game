@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://duhrx2f8n6hr"]
+[gd_scene load_steps=19 format=3 uid="uid://duhrx2f8n6hr"]
 
 [ext_resource type="Script" path="res://scenes/stages/stage.gd" id="1_88heb"]
 [ext_resource type="PackedScene" uid="uid://c1u1i28n3rhqg" path="res://scenes/player/player.tscn" id="1_317p6"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://mrqy6podjfqm" path="res://scenes/enemies/wasp.tscn" id="7_pa8ls"]
 [ext_resource type="PackedScene" uid="uid://b2s753bbxnfu" path="res://scenes/enemies/spider.tscn" id="8_nps1k"]
 [ext_resource type="PackedScene" uid="uid://dd5q0bva85ptb" path="res://scenes/enemies/scarab.tscn" id="9_5oqax"]
+[ext_resource type="AudioStream" uid="uid://c5t3e4pc03eei" path="res://assets/sounds/Enigma_long.mp3" id="10_ee08k"]
+[ext_resource type="Script" path="res://scenes/stages/StageSound.gd" id="11_f1n2w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m7voe"]
 texture = ExtResource("2_du3e2")
@@ -764,3 +766,9 @@ limit_smoothed = true
 spawns = Array[ExtResource("6_0svek")]([SubResource("Resource_fpa6h"), SubResource("Resource_mcwua"), SubResource("Resource_vkwv1"), SubResource("Resource_i7btn"), SubResource("Resource_0qn0x")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="StageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ee08k")
+volume_db = -20.0
+autoplay = true
+script = ExtResource("11_f1n2w")

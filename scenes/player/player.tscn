@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1u1i28n3rhqg"]
+[gd_scene load_steps=30 format=3 uid="uid://c1u1i28n3rhqg"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_7nbr6"]
 [ext_resource type="Texture2D" uid="uid://c3ypd2386prrc" path="res://assets/player_img/knight_idle_spritesheet.png" id="2_6f4s5"]
@@ -15,6 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://dx3e3m4ultw11" path="res://assets/sounds/levelup.ogg" id="12_27wo8"]
 [ext_resource type="Texture2D" uid="uid://2x1pkfqmgabs" path="res://assets/GUI/healthbarover.png" id="13_1vorl"]
 [ext_resource type="Texture2D" uid="uid://d24uhkt6o25xk" path="res://assets/GUI/health-bars.png" id="13_g30kj"]
+[ext_resource type="PackedScene" uid="uid://bg6dumk7f81ot" path="res://scenes/utilities/button_basic.tscn" id="16_fuei6"]
+[ext_resource type="AudioStream" uid="uid://ct1dj6vh0d2pw" path="res://assets/sounds/game_over.wav" id="16_ojigu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3fyw"]
 atlas = ExtResource("2_6f4s5")
@@ -244,6 +246,45 @@ grow_horizontal = 2
 stream = ExtResource("12_27wo8")
 volume_db = -10.0
 
+[node name="DeathPanel" type="Panel" parent="GUILayer/GUI"]
+process_mode = 2
+layout_mode = 0
+offset_left = -90.0
+offset_top = -1000.0
+offset_right = 660.0
+offset_bottom = -400.0
+
+[node name="LabelDeath" type="Label" parent="GUILayer/GUI/DeathPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("12_5i0mn")
+theme_override_font_sizes/font_size = 60
+text = "You Lose!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonLoseMenu" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("16_fuei6")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_top = 0.5
+anchor_right = 0.333
+anchor_bottom = 0.5
+offset_left = 0.25
+offset_right = 260.25
+offset_bottom = 100.0
+text = "Main Menu"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="GUILayer/GUI/DeathPanel"]
+stream = ExtResource("16_ojigu")
+volume_db = -10.0
+
 [node name="CollectedWeapons" type="GridContainer" parent="GUILayer/GUI"]
 layout_mode = 0
 offset_left = 10.0
@@ -269,5 +310,6 @@ columns = 10
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
+[connection signal="click_end" from="GUILayer/GUI/DeathPanel/ButtonLoseMenu" to="." method="_on_button_lose_menu_click_end"]
 
 [editable path="HurtBox"]
