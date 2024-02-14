@@ -27,7 +27,7 @@ func _on_timer_timeout():
 
 #This function is for determining a random vector coordinate, which is outside the players view.
 func get_random_position():
-	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
+	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)	#viewport is from camera and the randf secures that the rect size is larger than screen
 	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
 	var top_right = Vector2(player.global_position.x + vpr.x/2, player.global_position.y - vpr.y/2)
 	var bottom_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y + vpr.y/2)

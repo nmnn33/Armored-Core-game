@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://btgnkqsst0dci"]
+[gd_scene load_steps=17 format=3 uid="uid://biury510yyj1h"]
 
 [ext_resource type="Texture2D" uid="uid://c3ypd2386prrc" path="res://assets/player_img/knight_idle_spritesheet.png" id="2_6f4s5"]
 [ext_resource type="Texture2D" uid="uid://dl25nknu2ltw0" path="res://assets/player_img/knight_run_anim_f0.png" id="3_uoudp"]

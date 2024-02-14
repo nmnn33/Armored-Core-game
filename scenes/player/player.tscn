@@ -108,6 +108,7 @@ radius = 25.4951
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.8, 0.8)
+collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_7nbr6")
 
@@ -119,6 +120,7 @@ frame = 2
 frame_progress = 0.690902
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(3.75, 5.625)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_esx6f")
@@ -300,6 +302,17 @@ offset_top = 30.0
 offset_right = 630.0
 offset_bottom = 70.0
 columns = 10
+
+[node name="GameTimer" type="Label" parent="GUILayer"]
+offset_left = 580.0
+offset_top = 35.0
+offset_right = 680.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("12_5i0mn")
+theme_override_font_sizes/font_size = 24
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="Attack/RocketTimer" to="." method="_on_rocket_timer_timeout"]

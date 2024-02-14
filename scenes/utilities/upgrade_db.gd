@@ -149,7 +149,7 @@ const UPGRADES = {
 		"type": "upgrade"
 	},
 	"bigger_load3": {
-		"icon": ICON_PATH + "Skillicon10_37.pngg",
+		"icon": ICON_PATH + "Skillicon10_37.png",
 		"displayname": "Bigger load",
 		"details": "Increases the size of attacks an additional 10% of their base size",
 		"level": "Level: 3",

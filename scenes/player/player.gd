@@ -8,7 +8,7 @@ var last_movement = Vector2.UP
 var experience = 0
 var experience_level = 1
 var collected_experience = 0
-
+var pass_time = 0
 #Attacks
 var rocket = preload("res://scenes/attack/rocket.tscn")
 var plasma = preload("res://scenes/attack/plasma.tscn")
@@ -51,6 +51,7 @@ var plasma_level = 0
 @onready var collectedWeapons = get_node("GUILayer/GUI/CollectedWeapons")
 @onready var collectedUpgrades = get_node("GUILayer/GUI/CollectedUpgrades")
 @onready var itemContainer = preload("res://scenes/player/gui/item_container.tscn")
+@onready var gameTimer = get_node("GUILayer/GameTimer")
 
 @onready var deathPanel = get_node("GUILayer/GUI/DeathPanel")
 @onready var labelDeath = get_node("GUILayer/GUI/DeathPanel/LabelDeath")
@@ -90,7 +91,9 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	move_and_collide(velocity * delta)
-
+	pass_time += delta
+	change_time()
+	
 #When player's hurtbox is collided with hitbox
 func _on_hurt_box_hurt(damage, _angle, _knockback):
 	hp -= clamp(damage-armor, 1.0, 999.0)	#min dmg is 1, max 999.
@@ -115,6 +118,17 @@ func death():
 func _on_button_lose_menu_click_end():
 	get_tree().paused = false
 	var _level = get_tree().change_scene_to_file("res://scenes/mainMenu/main_menu.tscn")
+	
+#Win game after beating boss, signal comes from the boss
+func win():
+	labelDeath.text = "You win!"
+	deathPanel.visible = true
+	emit_signal("playerdeath") #SoundStage stops playing
+	get_tree().paused = true
+	var tween = deathPanel.create_tween()
+	tween.tween_property(deathPanel,"position",Vector2(-100,100),3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	tween.play()
+	gameOverSound.play()
 
 #Attacks start here
 func attack():
@@ -320,6 +334,17 @@ func get_random_item():
 		return randomitem	
 	else:
 		return null
+
+#Function to change GameTimer label to track the played time
+func change_time():
+	var time = int(pass_time) #Only int, because decimals are not needed
+	var get_m = int(time/60.0)	#Minutes
+	var get_s = time % 60
+	if get_m < 10:	#If minutes are less than ten, put zero infront
+		get_m = str(0,get_m)
+	if get_s < 10:	#If seconds are less than ten, put zero infront
+		get_s = str(0,get_s)
+	gameTimer.text = str(get_m,":",get_s)	#In 00:00 format
 
 #Updates the GUI CollectedWeapons and ColledtedUpgrades
 func adjust_gui_collection(upgrade):
