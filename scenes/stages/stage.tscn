@@ -1,6 +1,5 @@
-[gd_scene load_steps=21 format=3 uid="uid://duhrx2f8n6hr"]
+[gd_scene load_steps=20 format=3 uid="uid://duhrx2f8n6hr"]
 
-[ext_resource type="Script" path="res://scenes/stages/stage.gd" id="1_88heb"]
 [ext_resource type="PackedScene" uid="uid://c1u1i28n3rhqg" path="res://scenes/player/player.tscn" id="1_317p6"]
 [ext_resource type="Texture2D" uid="uid://lf0ra5i64axf" path="res://assets/tileset/tileset_arranged.png" id="2_du3e2"]
 [ext_resource type="PackedScene" uid="uid://bhid5kgpuf88c" path="res://scenes/utilities/enemy_spawner.tscn" id="4_bt75w"]
@@ -754,7 +753,6 @@ enemy_num = 1
 enemy_spawn_delay = 0
 
 [node name="Stage" type="Node"]
-script = ExtResource("1_88heb")
 
 [node name="Player" parent="." instance=ExtResource("1_317p6")]
 

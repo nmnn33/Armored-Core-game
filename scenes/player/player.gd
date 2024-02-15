@@ -56,6 +56,7 @@ var plasma_level = 0
 @onready var deathPanel = get_node("GUILayer/GUI/DeathPanel")
 @onready var labelDeath = get_node("GUILayer/GUI/DeathPanel/LabelDeath")
 @onready var gameOverSound = get_node("GUILayer/GUI/DeathPanel/GameOverSound")
+@onready var winSound = get_node("GUILayer/GUI/DeathPanel/WinSound")
 
 #Enemy Related
 var enemy_close = []
@@ -128,7 +129,7 @@ func win():
 	var tween = deathPanel.create_tween()
 	tween.tween_property(deathPanel,"position",Vector2(-100,100),3.0).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	tween.play()
-	gameOverSound.play()
+	winSound.play()
 
 #Attacks start here
 func attack():

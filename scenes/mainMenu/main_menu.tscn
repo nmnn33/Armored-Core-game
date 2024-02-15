@@ -79,6 +79,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 45
 text = "Options"
 
+[node name="CreditsButton" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ndh77")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Credits"
+
 [node name="QuitButton" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_ndh77")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 45
@@ -86,4 +91,5 @@ text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

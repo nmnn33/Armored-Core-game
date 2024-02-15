@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3ttg2si1fcu"]
+
+[ext_resource type="Script" path="res://scenes/creditsScene/creditsMenu.gd" id="1_hebf1"]
+[ext_resource type="Texture2D" uid="uid://oeuy8yq1vogk" path="res://assets/main_menu/splashscreen.png" id="2_y6to4"]
+[ext_resource type="FontFile" uid="uid://3xholo3d0jjx" path="res://assets/fonts/TranscendsGames.otf" id="3_gdl3g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vyrcy"]
+font = ExtResource("3_gdl3g")
+font_size = 70
+font_color = Color(0.67451, 0.729412, 0.427451, 1)
+outline_size = 7
+outline_color = Color(0.956863, 0.866667, 0.972549, 1)
+shadow_size = 15
+shadow_color = Color(0, 0.615686, 0.462745, 1)
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hebf1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_y6to4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="TopContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
+
+[node name="Separator" type="Control" parent="MarginContainer/TopContainer"]
+layout_mode = 2
+
+[node name="OptionsTitle" type="Label" parent="MarginContainer/TopContainer"]
+layout_mode = 2
+text = "Credits
+"
+label_settings = SubResource("LabelSettings_vyrcy")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+
+[node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer/VBoxContainer/CanvasLayer"]
+offset_left = 234.0
+offset_top = 193.0
+offset_right = 972.0
+offset_bottom = 403.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -310.0
+offset_top = 220.0
+offset_right = 330.0
+offset_bottom = 347.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_gdl3g")
+theme_override_font_sizes/font_size = 22
+text = "boom sound effects by dklon.
+
+Aggressive Computer Gaming | ENIGMA by Alex-Productions | https://onsound.eu/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/"
+
+[node name="Separator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator4" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButtom" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(170, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.962136, 0.926562, 0.911879, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gdl3g")
+theme_override_font_sizes/font_size = 45
+text = "Back
+"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/BackButtom" to="." method="_on_back_buttom_pressed"]
